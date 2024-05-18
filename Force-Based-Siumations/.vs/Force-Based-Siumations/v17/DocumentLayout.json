@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Development\\Force-Based-Simulations\\Force-Based-Siumations\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DBF24EF3-D716-446A-A69B-B249EA2A693F}|Force-Based-Siumations.vcxproj|D:\\Development\\Force-Based-Simulations\\src\\mainRun.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBF24EF3-D716-446A-A69B-B249EA2A693F}|Force-Based-Siumations.vcxproj|D:\\Development\\Force-Based-Simulations\\src\\simul.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBF24EF3-D716-446A-A69B-B249EA2A693F}|Force-Based-Siumations.vcxproj|D:\\Development\\Force-Based-Simulations\\Force-Based-Siumations\\Force-Based-Siumations.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{DBF24EF3-D716-446A-A69B-B249EA2A693F}|Force-Based-Siumations.vcxproj|solutionrelative:Force-Based-Siumations.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "simul.hpp",
+              "DocumentMoniker": "D:\\Development\\Force-Based-Simulations\\src\\simul.hpp",
+              "RelativeDocumentMoniker": "..\\src\\simul.hpp",
+              "ToolTip": "D:\\Development\\Force-Based-Simulations\\src\\simul.hpp",
+              "RelativeToolTip": "..\\src\\simul.hpp",
+              "ViewState": "AQIAADwAAAAAAAAAAAAAAF0AAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-18T02:40:04.851Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Force-Based-Siumations.cpp",
+              "DocumentMoniker": "D:\\Development\\Force-Based-Simulations\\Force-Based-Siumations\\Force-Based-Siumations.cpp",
+              "RelativeDocumentMoniker": "Force-Based-Siumations.cpp",
+              "ToolTip": "D:\\Development\\Force-Based-Simulations\\Force-Based-Siumations\\Force-Based-Siumations.cpp",
+              "RelativeToolTip": "Force-Based-Siumations.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-18T02:34:22.324Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "mainRun.cpp",
+              "DocumentMoniker": "D:\\Development\\Force-Based-Simulations\\src\\mainRun.cpp",
+              "RelativeDocumentMoniker": "..\\src\\mainRun.cpp",
+              "ToolTip": "D:\\Development\\Force-Based-Simulations\\src\\mainRun.cpp",
+              "RelativeToolTip": "..\\src\\mainRun.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-18T02:24:48.252Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

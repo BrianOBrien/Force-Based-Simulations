@@ -5,8 +5,8 @@ File: simul.hpp
 Todd King
 */
 
-#include <stream.hpp>
-#include <disp.h>
+//#include <stream.hpp>
+//#include <disp.h>
 #include <conio.h>
 #include <math.h>
 #include <time.h>
@@ -28,33 +28,34 @@ class BODY {
 	char icon;
 public:
 	BODY();
-	set_mass (double m);
-	set_velocity (double x, double y); set_position (double x, double y);
-	apply_force (VECTOR 2D from, double amount);
+	void set_mass (double m);
+	void set_velocity (double x, double y);
+	void set_position (double x, double y);
+	void apply_force (struct VECTOR_2D from, double amount);
 	VECTOR_2D position();
 	double get_gmass();
-	update();
-	set_icon (char c);
+	void update();
+	void set_icon (char c);
 };
 
 /* Distance and time units are converted to screen units and ticks */
-BODY::set_mass (double m) {
+void BODY::set_mass (double m) {
 	double pow();
 	mass = m; 
 	gmass = G * m;
 };
 
-BODY::set_velocity (double x, double y) {
+void BODY::set_velocity (double x, double y) {
 	velocity.x = x;
 	velocity.y = y;
 };
 
-BODY::set_position (double x, double y) {
+void BODY::set_position(double x, double y) {
 	world.x = x;
 	world.y = y;
-}
+};
 
-BODY::apply_force (VECTOR_2D from, double gmass) {
+void BODY::apply_force(struct VECTOR_2D from, double gmass) {
 	VECTOR_2D d;
 	double rs;
 	double v;
@@ -66,7 +67,7 @@ BODY::apply_force (VECTOR_2D from, double gmass) {
 	rs = (d.x * d.x) + (d.y * d.y);
 	if (rs != 0.0) { // there's a separation
 		r = sqrt(rs);
-		v = (gmass / rs) * SECS_PER_TIC:
+		v = (gmass / rs) * SECS_PER_TIC;
 		velocity.x = v * d.x / r;
 		velocity.y = v * d.y / r;
 	}
@@ -81,8 +82,8 @@ BODY::BODY() {
 	icon = '*';
 };
 
-VECTOR_2D BODY::position() {
-	VECTOR_2D vec;
+struct VECTOR_2D BODY::position() {
+	struct VECTOR_2D vec;
 	
 	vec.x = world.x;
 	vec.y = world.y;
@@ -93,31 +94,35 @@ double BODY::get_gmass () {
 	return (gmass);
 }
 
-BODY::set_icon (char c) { icon= c; }
+void BODY::set_icon (char c) { icon= c; }
 
 class UNIVERSE {
 	unsigned int body_cnt;
 	BODY *body_pool [MAX_BODY_POOL];
 public:
 	UNIVERSE();
-	service (BODY *bptr);
-	big_bang ();
+	void service (BODY *bptr);
+	void big_bang ();
 };
 
-UNIVERSE:: UNIVERSE() (
+UNIVERSE::UNIVERSE() {
 	body_cnt = 0;
+};
+
+inline UNIVERSE::UNIVERSE()
+{
 }
 
-UNIVERSE::service (BODY *bptr) {
+void UNIVERSE::service(BODY *bptr) {
     if (body_cnt >= MAX_BODY_POOL) return(0); 
     body_pool [body_cnt] = bptr;
     body_cnt++;
 };
 
-UNIVERSE::big_bang () {
+void UNIVERSE::big_bang () {
     int i, j;
     init_screen();
-    print_message(" Press ESC to stop.");
+    print_message((char *) " Press ESC to stop.");
 
     for(;;) {
 
@@ -145,8 +150,8 @@ UNIVERSE::big_bang () {
     deinit_screen();
 };
 
-sleep (double seconds) {
-    time_t itimel, ltime2;
+void sleep (double seconds) {
+    time_t ltimel, ltime2;
     time (&ltimel);
     time (&ltime2);
     while (difftime (ltimel, ltime2) < seconds) {
