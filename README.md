@@ -64,3 +64,14 @@ Negoita, Constantin Virgil, and Ralescu, Dan. Simulation, Knowledge-Based Comput
 Availability
 All source code for articles in this issue is available on a single disk. To order, send $14.95 (Calif, residents add sales tax) to Dr. Dobb's Journal, 501 Galveston Dr., Redwood City, CA 94063, or call 800-356-2002 (from inside Calif.) or 800-533-4372 (from outside Calif.).
 Please specify the issue number and format (MS-DOS, Macintosh, Kaypro).
+
+
+
+![image](https://github.com/BrianOBrien/Force-Based-Simulations/assets/2880825/78b873e2-9ce9-47ea-a81b-ca39256456fe)
+
+
+![image](https://github.com/BrianOBrien/Force-Based-Simulations/assets/2880825/f4c5c5b7-fe15-4627-afbc-d1aa342a3ac7)
+
+
+
+
