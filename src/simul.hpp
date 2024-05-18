@@ -92,6 +92,7 @@ double BODY::get_gmass () {
 void BODY::set_icon (char c) {
 	icon = c;
 };
+
 void BODY::update () {
 
 }
