@@ -33,15 +33,9 @@
     <ClInclude Include="..\src\simul.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\simulscr.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Force-Based-Siumations.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\mainRun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,5 +1,4 @@
 
-Listing Four
 /*
 Various constants which affect the simulation
 system. Units are in meters, seconds and Kilograms.

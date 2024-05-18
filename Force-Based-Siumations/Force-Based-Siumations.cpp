@@ -5,6 +5,7 @@
 #include "Force-Based-Siumations.h"
 #include "../../Force-Based-Simulations/src/simul.hpp"
 
+
 #define MAX_LOADSTRING 100
 
 // Global Variables:
@@ -112,6 +113,35 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
+
+BODY earth;
+BODY moon;
+BODY planet_x;
+UNIVERSE universe;
+
+void beginUse(void)
+{
+    earth.set_mass(5.98e24);
+    earth.set_position(5.0e8, 5.0e8);
+    earth.set_icon('E');
+
+    moon.set_mass(7.36e22);
+    moon.set_position(5.0e8, 8.8e8);
+    moon.set_icon('M');
+    moon.set_velocity(-1020.0, 0.0);
+
+    planet_x.set_mass(14.8e22);
+    planet_x.set_position(1.0, 1.0e4);
+    planet_x.set_icon('X');
+    planet_x.set_velocity(1800, 2000);
+
+    universe.service(&earth);
+    universe.service(&moon);
+    universe.service(&planet_x);
+
+//    universe.big_bang();
+}
+
 //
 //  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
@@ -124,9 +154,11 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-
     switch (message)
     {
+    case WM_ACTIVATE:
+        beginUse();
+
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
@@ -144,11 +176,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
+
+            universe.propagate();
             // TODO: Add any drawing code that uses hdc here...
+
             EndPaint(hWnd, &ps);
         }
         break;

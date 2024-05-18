@@ -10,15 +10,14 @@ Todd King
 #include <conio.h>
 #include <math.h>
 #include <time.h>
-#include <math.h>
 #include "simconst.h"
 
 #define ESC (27)
 #define MAX_BODY_POOL (100)
 
-typedef struct VECTOR_2D {
+typedef struct {
 	double x, y;
-};
+} VECTOR_2D;
 
 class BODY {
 	VECTOR_2D world;
@@ -31,7 +30,7 @@ public:
 	void set_mass (double m);
 	void set_velocity (double x, double y);
 	void set_position (double x, double y);
-	void apply_force (struct VECTOR_2D from, double amount);
+	void apply_force (VECTOR_2D from, double amount);
 	VECTOR_2D position();
 	double get_gmass();
 	void update();
@@ -44,18 +43,15 @@ void BODY::set_mass (double m) {
 	mass = m; 
 	gmass = G * m;
 };
-
 void BODY::set_velocity (double x, double y) {
 	velocity.x = x;
 	velocity.y = y;
 };
-
-void BODY::set_position(double x, double y) {
+void BODY::set_position (double x, double y) {
 	world.x = x;
 	world.y = y;
 };
-
-void BODY::apply_force(struct VECTOR_2D from, double gmass) {
+void BODY::apply_force (VECTOR_2D from, double gmass) {
 	VECTOR_2D d;
 	double rs;
 	double v;
@@ -72,7 +68,6 @@ void BODY::apply_force(struct VECTOR_2D from, double gmass) {
 		velocity.y = v * d.y / r;
 	}
 };
-
 BODY::BODY() {
 
 	world.x=0;
@@ -80,52 +75,75 @@ BODY::BODY() {
 	velocity.x = 0;
 	velocity.y = 0;
 	icon = '*';
-};
 
-struct VECTOR_2D BODY::position() {
-	struct VECTOR_2D vec;
-	
+	gmass = 0.0;
+	mass = 0.0;
+};
+VECTOR_2D BODY::position() {
+	VECTOR_2D vec;
+
 	vec.x = world.x;
 	vec.y = world.y;
 	return(vec);
-}
-
+};
 double BODY::get_gmass () {
 	return (gmass);
-}
+};
+void BODY::set_icon (char c) {
+	icon = c;
+};
+void BODY::update () {
 
-void BODY::set_icon (char c) { icon= c; }
+}
 
 class UNIVERSE {
 	unsigned int body_cnt;
-	BODY *body_pool [MAX_BODY_POOL];
+	BODY** body_pool; // [MAX_BODY_POOL] = {};
 public:
-	UNIVERSE();
+	UNIVERSE ();
 	void service (BODY *bptr);
+#ifdef ZORTECH
 	void big_bang ();
+#endif
+	void propagate ();
 };
 
-UNIVERSE::UNIVERSE() {
+UNIVERSE::UNIVERSE () {
 	body_cnt = 0;
+	body_pool = new BODY* [MAX_BODY_POOL];
+	int i = 0;
+	for (i = 0; i < MAX_BODY_POOL; ++i)
+		body_pool[i] = new BODY();
 };
 
-inline UNIVERSE::UNIVERSE()
-{
-}
 
-void UNIVERSE::service(BODY *bptr) {
-    if (body_cnt >= MAX_BODY_POOL) return(0); 
+void UNIVERSE::service (BODY *bptr) {
+    if (body_cnt >= MAX_BODY_POOL) return; // was 0?
     body_pool [body_cnt] = bptr;
     body_cnt++;
 };
 
+void UNIVERSE::propagate ()
+{
+	unsigned int i, j;
+	/* Let each body influence all others */
+	for (i = 0; i < body_cnt; i++) {
+		for (j = 0; j < body_cnt; j++) {
+			if (j == i) continue; // don't apply force to self 
+			body_pool[i]->apply_force(body_pool[j]->position(), body_pool[j]->get_gmass());
+		}
+	}
+	/* Display all bodies */
+	for (i = 0; i < body_cnt; i++) {
+		body_pool[i]->update();
+	}
+};
+#ifdef ZORTECH
 void UNIVERSE::big_bang () {
-    int i, j;
     init_screen();
     print_message((char *) " Press ESC to stop.");
 
     for(;;) {
-
         print_tick();
         if (kbhit ()) {
              switch (getch())
@@ -135,21 +153,13 @@ void UNIVERSE::big_bang () {
             }
         }
         sleep (0.1);
-        /* Let each body influence all others */ 
-        for (i=0; i < body_cnt; i++) {
-            for(j=0; j < body_cnt; j++) {
-                if(j == i) continue; // don't apply force to self 
-                body_pool [i]->apply_force (body_pool [j]->position(), body_pool [j]->get_gmass());
-            }
-        }
-        /* Display all bodies */
-        for (i=0; i < body_cnt; i++) {
-            body_pool [i]->update();
-        }
+		propagate();
     }
     deinit_screen();
 };
+#endif
 
+#ifdef ZORTECH
 void sleep (double seconds) {
     time_t ltimel, ltime2;
     time (&ltimel);
@@ -158,3 +168,4 @@ void sleep (double seconds) {
         time (&ltime2);
     }
 }
+#endif
